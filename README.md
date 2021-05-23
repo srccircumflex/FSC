@@ -9,7 +9,7 @@
 
 — cipher module —
 - hashing
-- initializations vector
+- initializations vector's
 - transposition
 - stream-ciphering
 - additional variable specifications*
