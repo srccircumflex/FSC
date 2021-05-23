@@ -75,8 +75,6 @@ Help__________________________________________________________________
 #           · against Key extraction,
 #           · against Seed extraction,
 #           · Permutation per block of 128 bytes = 3.8562048236258E+215,
-#           · Complexity '(3 * ((2 * 3) + 1))' in lv3 for
-#             197442 of 2064384 possible computing patterns,
 #   [+] · Dynamic, guaranteed.
 #
 #   Anyway feel free to study, verify and modify this script.
