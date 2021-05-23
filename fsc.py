@@ -109,7 +109,7 @@ def enc_main():
     global v, vp1, jmr
     if jmr:
         if vp1: print(" [*] run MemJammer", file=stdout)
-        gen_ctl = fscMJ.GEN_CTL(len(iby) + 384 + ilv)
+        gen_ctl = fscMJ.GEN_CTL(len(iby) + 256 + ilv + 128 * hps)
         next(gen_ctl)
     if vp1: print(" [+] Hashing", file=stdout)
     o = fscModule.FStreamCipher(
