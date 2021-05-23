@@ -1,0 +1,83 @@
+
+-e  --encrypt
+-d  --decrypt
+-dd                decrypt and disable position caching
+
+-f  --file         following by file, read binary.
+-s  --stdin        input from stdin, line by line until '@EOF' input.
+-E  --EOF          same like -s, following by 'EOF' specification.
+-H  --hide-input   use getpass module for hidden input from stdin.
+-o  --output-file  following by output file, if not defined: result printed at stderr.
+
+-i  --inject       following by file.
+                    With -e: inject file with cipher.
+                    With -d: extract cipher from file.
+--ilv              summary of following n and default of 256, defines the InitializationVector.
+--part             following by 0 or 1, specified used part of stream bit.
+--prio             following by n > zero, defines the stream bit part priority (default=1).
+--hops             following by n > zero, defines the transposition hops.
+--key-file         following by file for a second hash.
+--mk-key-file      following by file name specification (Has no effect with -d).
+--sha512           hashlib function
+--sha256           hashlib function (default)
+--sha224           hashlib function
+--mj               start MemJammer.
+
+-q  --quiet
+-v  --verbose
+-p  --process
+-b  --benchmark
+-I                 disable disclaimer
+
+-h                 print options
+--help             print this page
+##########################################################################################
+                (-e  --encrypt) || (-d  --decrypt)
+Input options_________________________________________________________
+        (-f  --file) || (-s  --stdin) || (-E  --EOF) ||
+             (-H  --hide-input) || (-i  --inject)
+Output options________________________________________________________
+        (-o  --output-file) (-i  --inject) || None=stdout
+Crypt specials________________________________________________________
+    --ilv --part --prio --sha --hops (--key-file || --mk-key-file)
+MemJammer_____________________________________________________________
+                               --mj
+Verbose_______________________________________________________________
+   (-q  --quiet) (-v  --verbose) (-b  --benchmark) (-p  --process) -I
+Help__________________________________________________________________
+                             -h || --help
+##########################################################################################
+#
+#                  FragmentedStreamCipher  2021
+#
+#   This Project shut be a homage to the discipline.
+#   Despite the user-friendliness, its not recommended to use this module.
+#
+#   [i] Status:     Experimental
+#
+#   RoughCalculation of Complexity per byte
+# T+ # STREAM # 3 * 3 + 6 * 2n + (3 * ((2 * 3) + 1)) * 2n
+# T- # STREAM # 1 * 1 + 6 * 2n + (0 * ((2 * 3) + 1)) * 2n
+# T+ # TRNPOS # 3 * 3 + 6 * 2n + (3 * ((2 * 3) + 1)) * 2n + 9 * 2n + ~[(((127 * 6 - 1) + (2))n) * b/128]
+# T- # TRNPOS # 1 * 1 + 6 * 2n + (0 * ((2 * 3) + 1)) * 2n + 9 * 2n + ~[((3)n) * b/128]
+#
+#   [!] Protection's:
+#           · Maintaining and system integrity,
+#           · Cipher's safety,
+#           · against CPU Vulnerability (Meltdown, Spectre …),
+#           · against Mem side canal attacks,
+#           · Random generated escape sequences,
+#           · Other Wildcards,
+#           · Failsafe, Bug free,
+#   [!] NOT guaranteed.
+#
+#   [+] Protection's:
+#           · against Key extraction,
+#           · against Seed extraction,
+#           · Permutation per block of 128 bytes = 3.8562048236258E+215,
+#           · Complexity '(3 * ((2 * 3) + 1))' in lv3 for
+#             197442 of 2064384 possible computing patterns,
+#   [+] · Dynamic, guaranteed.
+#
+#   Anyway feel free to study, verify and modify this script.
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
