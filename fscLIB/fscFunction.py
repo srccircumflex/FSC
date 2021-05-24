@@ -133,7 +133,7 @@ def x_stream(stream, b:bytes) -> bytes:
     return o
 
 
-def transposition(seed: str, inp_b: bytes, part_prio:list[int, int], hps:int=3,
+def transposition(seed: str, inp_b: bytes, part_prio:list[int, int], hps:int=3, ilv:int=256,
                   de_=False, vp0:bool=True, vp2:bool=False, vb1:bool=False) -> tuple:
     global coding_a
     l0 = (len(inp_b) if not de_ else len(inp_b) - 128 * hps)
@@ -145,7 +145,7 @@ def transposition(seed: str, inp_b: bytes, part_prio:list[int, int], hps:int=3,
         B = (f" {N} / {l0}" if vp2 else "")
         print(f"{P}{B}", end="", file=stdout)
     if type(de_) != list:
-        gen_pos = basis_and_pos(l0, hps)
+        gen_pos = basis_and_pos(l0, hps, ilv)
         gen_srm = gen_stream(seed, l0)
         gst = GSTool(gen_srm, part_prio)
         pst = PSTool(gen_pos, gen_srm, part_prio)
