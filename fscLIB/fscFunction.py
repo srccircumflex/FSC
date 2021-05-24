@@ -32,7 +32,7 @@ def gen_stream(seed:str, l1:int):
     while True:                                                 # [1]
         l3 = int(str(l2)[-3:])
         if l3 > 111: l2 = l3; break
-        l2 = (l2 ** 2) // 7 + l3
+        l2 = (l2 ** 2) // 7 + l3 + 9
     while True:
         for i in range(len(seed) - 1):                          # [2]
             y = ord(seed[i]) ^ ord(seed[i + 1])
