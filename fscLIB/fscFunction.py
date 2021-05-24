@@ -15,8 +15,9 @@ def init_vec(inp: bytes, ilv: int = 256, rm:bool=False) -> bytes:
     return ap + inp
 
 
-def basis_and_pos(l0:int, hps:int=3):
-    bas = bytearray(); bas += b'0'*(l0 - l0 % 128); bas += urandom(128 * hps + l0 % 128); yield bas
+def basis_and_pos(l0:int, hps:int=3, ilv:int=256):
+    l1 = l0 - ilv
+    bas = bytearray(); bas += b'0' * (l1 - l1 % 128); bas += urandom(128 * hps + l1 % 128 + ilv); yield bas
     l0 += 128
     for hop in range(hps):
         for sp in range(0, l0 // 128 - 1, hps):             # [4]
