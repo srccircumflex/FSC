@@ -25,14 +25,14 @@ class FStreamCipher:
             self.vb1 = (True if 'b' in v else False)
             self.tst = (True if 't' in v else False)
 
-    def enc_vlv2(self):
+        def enc_vlv2(self):
         if self.vb1: t = time()
         print(" [+] involve InitializationVector", end="", file=stdout)
         self.ib = fscFunction.init_vec(self.ib, self.ilv)
         print(" _DONE_", file=stdout)
         print(" [+] Transposition", end=(" " if self.vp0 else '\n'), file=stdout)
-        srm, bas = fscFunction.transposition(self.sd, self.ib, part_prio=self.pp, hps=self.hps,
-                                         vp0=self.vp0, vp2=self.vp2, vb1=self.vb1)
+        srm, bas = fscFunction.transposition(self.sd, self.ib, part_prio=self.pp, hps=self.hps, ilv=self.ilv,
+                                             vp0=self.vp0, vp2=self.vp2, vb1=self.vb1)
         if self.tst: fscIO.to_stderr(bas, srm)
         print(" [+] StreamCiphering", end="", file=stdout)
         o = fscFunction.x_stream(srm, bas)
@@ -44,8 +44,8 @@ class FStreamCipher:
     def enc_vlv1(self):
         if self.vb1: t = time()
         self.ib = fscFunction.init_vec(self.ib, self.ilv)
-        srm, bas = fscFunction.transposition(self.sd, self.ib, part_prio=self.pp, hps=self.hps,
-                                         vp0=self.vp0, vp2=self.vp2, vb1=self.vb1)
+        srm, bas = fscFunction.transposition(self.sd, self.ib, part_prio=self.pp, hps=self.hps, ilv=self.ilv,
+                                             vp0=self.vp0, vp2=self.vp2, vb1=self.vb1)
         if self.tst: fscIO.to_stderr(bas, srm)
         o = fscFunction.x_stream(srm, bas)
         if self.vb1: print(f"—————————————————————————————————\n"
@@ -58,7 +58,7 @@ class FStreamCipher:
                 self.sd, fscFunction.init_vec(
                     self.ib, self.ilv
                 ),
-                part_prio=self.pp, hps=self.hps, vp0=False, vp2=False, vb1=False
+                part_prio=self.pp, hps=self.hps, ilv=self.ilv, vp0=False, vp2=False, vb1=False
             )
         )
 
