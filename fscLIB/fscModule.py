@@ -25,7 +25,7 @@ class FStreamCipher:
             self.vb1 = (True if 'b' in v else False)
             self.tst = (True if 't' in v else False)
 
-        def enc_vlv2(self):
+    def enc_vlv2(self):
         if self.vb1: t = time()
         print(" [+] involve InitializationVector", end="", file=stdout)
         self.ib = fscFunction.init_vec(self.ib, self.ilv)
