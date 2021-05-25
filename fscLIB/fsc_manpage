@@ -53,7 +53,7 @@ Help__________________________________________________________________
 #   This Project shut be a homage to the discipline.
 #   Despite the user-friendliness, its not recommended to use this module.
 #
-#   [i] Status:     Experimental
+#   [i] Status:     Experimental.1
 #
 #   RoughCalculation of Complexity per byte
 # T+ # STREAM # 5 * 5 + 6 * 2n + (3 * ((2 * 3) + 1)) * 2n
