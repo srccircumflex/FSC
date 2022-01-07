@@ -65,3 +65,6 @@ Example: `fsc -vtest 2>> file`
 
 _Platform: Linux_;
 _Status: Experimental.1_
+
+
+![last commit](https://img.shields.io/badge/last_commit-May%202021-yellow)
