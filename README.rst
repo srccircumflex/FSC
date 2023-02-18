@@ -2,12 +2,12 @@ Fragmented Stream Cipher
 ####
 
 
-.. image:: /home/desk7u3ll/.__dev/FSC/experimental.png
+.. image:: ./experimental.png
     :align: left
     :width: 200
     :alt: experimental.png
 
-.. image:: /home/desk7u3ll/.__dev/FSC/revision.png
+.. image:: ./revision.png
     :align: left
     :width: 200
     :alt: experimental.png
