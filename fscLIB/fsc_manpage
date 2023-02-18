@@ -1,0 +1,80 @@
+
+-e  --encrypt
+-d  --decrypt
+-dd                decrypt and disable position caching.
+
+-f  --file        {path}        followed by the file to be decrypted/encrypted.
+-s  --stdin       {}            enter the data to be encrypted via stdin, line by line until '@EOF' input.
+-E  --EOF         {spec}        same like -s, but the EOF label is passed as parameter.
+-H  --hide-input  {}            hide the input from stdin.
+-o  --output-file {path}        write the encrypted/decrypted data to a file instead of to stderr.
+
+-i  --inject      {path}
+                                In combination with -e: inject the encrypted data into a foreign file.
+                                In combination with -d: extract the encrypted data from a foreign file.
+
+--ilv              {integer}    extends the default initialization vector of 256 bytes (default=0).
+--part             {0 or 1}     defines the character of the generated pair which will
+                                be used for encryption considering the priority (default=0).
+--prio             {integer>0}  defines the priority with which the defined character
+                                is used instead of the other one from the pair
+                                (1 means every, 2 every second, 3 every third, ...) (default=1).
+--hops             {integer>0}  defines the jumps through the 128-byte blocks that are
+                                made during the transposition (default=3).
+--key-file         {path}       take the hash of a file as an additional seed.
+--mk-key-file      {path}       only in combination with -e, create a key file whose hash is used as an additional seed.
+
+Define the hash function with which the seed is created from the passphrase:
+--sha512           {}
+--sha256           {} (default)
+--sha224           {}
+
+-q  --quiet        {}
+-v  --verbose      {}
+-p  --process      {}
+-b  --benchmark    {}
+-I                 {}  disable disclaimer
+
+-h                 {}  print options
+--help             {}  print this page
+##########################################################################################
+                (-e  --encrypt) || (-d  --decrypt)
+Input options_________________________________________________________
+        (-f  --file) || (-s  --stdin) || (-E  --EOF) ||
+             (-H  --hide-input) || (-i  --inject)
+Output options________________________________________________________
+        (-o  --output-file) (-i  --inject) || None=stdout
+Crypt specials________________________________________________________
+    --ilv --part --prio --sha --hops (--key-file || --mk-key-file)
+Verbose_______________________________________________________________
+   (-q  --quiet) (-v  --verbose) (-b  --benchmark) (-p  --process) -I
+Help__________________________________________________________________
+                             -h || --help
+##########################################################################################
+#
+#                  FragmentedStreamCipher  2021
+#
+#                     E X P E R I M E N T A L
+#
+#   Despite the user-friendliness, its not recommended to use this module.
+#
+#
+#              Rough calculation of complexity per byte
+#
+# T+ # STREAM # 5 * 5 + 6 * 2n + (3 * ((2 * 3) + 1)) * 2n
+# T- # STREAM # 1 * 1 + 6 * 2n + (0 * ((2 * 3) + 1)) * 2n
+# T+ # TRNPOS # 5 * 5 + 6 * 2n + (3 * ((2 * 3) + 1)) * 2n + 9 * 2n + ~[(((127 * 6 - 1) + (2))n) * b/128]
+# T- # TRNPOS # 1 * 1 + 6 * 2n + (0 * ((2 * 3) + 1)) * 2n + 9 * 2n + ~[((3)n) * b/128]
+#
+#
+#                       ** Disclaimer **
+#
+#           · Data can be lost
+#           · Files can be damaged
+#           · Encryption can be solved
+#           · Program errors may occur
+#           · Does not protect against CPU or MEM vulnerabilities
+#           · Randomly generated escape sequences may cause unwanted effects in
+#             the terminal when output to stdin/stderr
+#
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
