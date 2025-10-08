@@ -7,11 +7,6 @@ Fragmented Stream Cipher  (2021)
     :width: 200
     :alt: experimental.png
 
-.. image:: ./revision.png
-    :align: left
-    :width: 200
-    :alt: experimental.png
-
 
 FSC is an encryption algorithm written in Python. The encryption of data is based on a combination of transposition
 of 128-byte blocks and 10-MiB block XOR operations. The encryption string is generated from an input passphrase,
